@@ -49,7 +49,7 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
         }
 
         // Append `: {subject}` to the heading
-        header_heading1.append(": " + subject);
+        header_heading1.innerHTML += ": " + subject;
 
         for (const link in links) {
             // Create an <a> element with the current `link` as its href and 
@@ -66,5 +66,5 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
 }
 
 // Append the `commonLinks_ulist` <ul> element to the `page` <div> element.
-page.append(ulistString("common-links", commonLinks_ulist.join("\n")));
+page.innerHTML += ulistString("common-links", commonLinks_ulist.join("\n"));
 const commonLinks = document.getElementById("common-links");
