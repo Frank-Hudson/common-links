@@ -65,6 +65,8 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
     }
 }
 
+console.log(commonLinks_ulist);
+
 // Append the `commonLinks_ulist` <ul> element to the `page` <div> element.
 page.innerHTML += ulistString("common-links", commonLinks_ulist.join("\n"));
 const commonLinks = document.getElementById("common-links");
