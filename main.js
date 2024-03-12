@@ -42,7 +42,7 @@ Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
         CURRENT_PAGE == "" || 
         CURRENT_PAGE == "#" || 
         CURRENT_PAGE.includes("127.0.0.1:5500") || 
-        CURRENT_PAGE.includes("/common-links")) {
+        CURRENT_PAGE.includes("frank-hudson.github.io/common-links")) {
         // Create an <a> element that has the targeted `subject` as its content 
         // and href
         const subject_anchor = anchorString(SEPARATOR + subject, subject);
