@@ -10,8 +10,12 @@ body {
   --header-alignment: center;
   text-align: var(--header-alignment);
   justify-content: var(--header-alignment);
+  padding: auto;
 }
 
-.header * {
-  margin: initial auto;
+.header *,
+.header h1 {
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }
