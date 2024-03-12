@@ -1,5 +1,5 @@
 const COMMON_LINKS_COLLECTION = {
-    "C&35;": [
+    "C-Sharp": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/",
         "https://en.wikipedia.org/wiki/C_Sharp_(programming_language)",
         "https://www.w3schools.com/cs/index.php",
@@ -27,7 +27,7 @@ const header_heading1 = document.getElementById("header-heading-1");
 
 const page = document.getElementById("page");
 
-let commonLinks_ulist = [];
+let commonLinks_ulist = Array.from([]);
 
 for (const [subject, links] in COMMON_LINKS_COLLECTION) {
     // If the current page is home
@@ -40,7 +40,7 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
         const subject_listitem = listitemString(subject.toLocaleLowerCase(), subject_anchor);
         // Append the previously created <li> element to the `commonLinks_ulist`
         //  <ul> element
-        commonLinks_ulist.append(subject_listitem);
+        commonLinks_ulist.push(subject_listitem);
     } else {
         // If the subject is not the current page; continue the loop until it 
         // is
@@ -60,7 +60,7 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
             const link_listitem = listitemString(link, link_anchor);
             // Append the previously created <li> element to the 
             // `commonLinks_ulist` <ul> element
-            commonLinks_ulist.append(link_listitem);
+            commonLinks_ulist.push(link_listitem);
         }
     }
 }
