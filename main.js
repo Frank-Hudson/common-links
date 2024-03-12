@@ -4,6 +4,9 @@ const COMMON_LINKS_COLLECTION = {
         "https://en.wikipedia.org/wiki/C_Sharp_(programming_language)",
         "https://www.w3schools.com/cs/index.php",
     ],
+    "Visual Basic": [
+        "https://en.wikipedia.org/wiki/Visual_Basic_(.NET)",
+    ],
 };
 console.log(COMMON_LINKS_COLLECTION);
 
@@ -35,7 +38,6 @@ const header_heading1 = document.getElementById("header-heading-1");
 const page = document.getElementById("page");
 
 let commonLinks_ulist = Array.from([]);
-
 Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
     // If the current page is home
     if (!CURRENT_PAGE || 
@@ -75,7 +77,6 @@ Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
         });
     }
 });
-
 console.log(commonLinks_ulist);
 
 // Append the `commonLinks_ulist` <ul> element to the `page` <div> element.
