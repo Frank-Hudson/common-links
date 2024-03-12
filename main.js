@@ -5,13 +5,20 @@ const COMMON_LINKS_COLLECTION = {
         "https://www.w3schools.com/cs/index.php",
     ],
 };
+console.log(COMMON_LINKS_COLLECTION);
 
 const SEPARATOR = "#";
+console.log(window.location.href);
 
 const CURRENT_PAGE = window.location.href.split(SEPARATOR)[1];
+console.log(CURRENT_PAGE);
 
-function anchorString(href, innerHTML) {
-    return `<a href="${href}">${innerHTML}</a>`;
+function paraString(id, innerHTML) {
+    return `<p id="${id}">${innerHTML}</p>`;
+}
+
+function anchorString(href, innerHTML, target = "_self") {
+    return `<a onclick="window.setTimeout(() => {window.location.reload();}, 100);" href="${href}" target="${target}">${innerHTML}</a>`;
 }
 
 function listitemString(id, innerHTML) {
@@ -29,9 +36,13 @@ const page = document.getElementById("page");
 
 let commonLinks_ulist = Array.from([]);
 
-for (const [subject, links] in COMMON_LINKS_COLLECTION) {
+Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
     // If the current page is home
-    if (!CURRENT_PAGE || CURRENT_PAGE == "" || CURRENT_PAGE == "#") {
+    if (!CURRENT_PAGE || 
+        CURRENT_PAGE == "" || 
+        CURRENT_PAGE == "#" || 
+        CURRENT_PAGE.includes("127.0.0.1:5500") || 
+        CURRENT_PAGE.includes("/common-links")) {
         // Create an <a> element that has the targeted `subject` as its content 
         // and href
         const subject_anchor = anchorString(SEPARATOR + subject, subject);
@@ -41,29 +52,29 @@ for (const [subject, links] in COMMON_LINKS_COLLECTION) {
         // Append the previously created <li> element to the `commonLinks_ulist`
         //  <ul> element
         commonLinks_ulist.push(subject_listitem);
-    } else {
-        // If the subject is not the current page; continue the loop until it 
-        // is
-        if (subject != CURRENT_PAGE || !CURRENT_PAGE.includes(subject)) {
-            continue;
-        }
-
+    // If the subject is the current page
+    } else if (subject == CURRENT_PAGE || CURRENT_PAGE.includes(subject)) {
         // Append `: {subject}` to the heading
         header_heading1.innerHTML += ": " + subject;
 
-        for (const link in links) {
+        header.innerHTML +=paraString(
+            "back-button", 
+            anchorString("#", "Back"),
+        );
+
+        links.forEach(link => {
             // Create an <a> element with the current `link` as its href and 
             // content
-            const link_anchor = anchorString(link, link);
+            const link_anchor = anchorString(link, link, "_blank");
             // Create a <li> element with the current `link` as its id and 
             // append the previous <a> element
             const link_listitem = listitemString(link, link_anchor);
             // Append the previously created <li> element to the 
             // `commonLinks_ulist` <ul> element
             commonLinks_ulist.push(link_listitem);
-        }
+        });
     }
-}
+});
 
 console.log(commonLinks_ulist);
 
