@@ -1,5 +1,9 @@
 import { a, li, p, ul } from "./elements.js";
 
+////////////////////////////////////////////////////////////////////////////////
+/* ################################## DATA ################################## */
+////////////////////////////////////////////////////////////////////////////////
+
 const COMMON_LINKS_COLLECTION = {
     "C Programming Language": [
         "https://en.wikipedia.org/wiki/C_(programming_language)",
@@ -41,59 +45,77 @@ const COMMON_LINKS_COLLECTION = {
 };
 console.info(COMMON_LINKS_COLLECTION);
 
+////////////////////////////////////////////////////////////////////////////////
+/* ############################### CONSTANTS  ############################### */
+////////////////////////////////////////////////////////////////////////////////
+
 const SEPARATOR = "#";
 console.info(window.location.href);
 
-const CURRENT_PAGE = window.location.href.split(SEPARATOR)[1];
+const CURRENT_PAGE_UNFILTERED = window.location.href.split(SEPARATOR)[1];
+const CURRENT_PAGE = CURRENT_PAGE_UNFILTERED
+    ? CURRENT_PAGE_UNFILTERED.replaceAll("%20", " ")
+    : CURRENT_PAGE_UNFILTERED;
 console.info(CURRENT_PAGE);
 
-const header = document.getElementById("header");
-const header_heading1 = document.getElementById("header-heading-1");
+////////////////////////////////////////////////////////////////////////////////
+/* ############################## GET ELEMENTS ############################## */
+////////////////////////////////////////////////////////////////////////////////
 
+const header = document.getElementById("header");
+const header_heading1 = document.getElementById("h1-common-links");
 const page = document.getElementById("page");
 
-let commonLinks_ulist = Array.from([]);
-Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
-    // If the current page is home
-    if (
-        !CURRENT_PAGE ||
-        CURRENT_PAGE == "" ||
-        CURRENT_PAGE == "#" ||
-        CURRENT_PAGE.includes("127.0.0.1:5500") ||
-        CURRENT_PAGE.includes("frank-hudson.github.io/common-links")
-    ) {
-        // Create an <a> element that has the targeted `subject` as its content
-        // and href
-        const subject_anchor = a(SEPARATOR + subject, subject);
-        // Create a <li> that has the targeted `subject` as its id, and append
-        // the previous <a> element to it
-        const subject_listitem = li(
-            subject.toLocaleLowerCase(),
-            subject_anchor
-        );
-        // Append the previously created <li> element to the `commonLinks_ulist`
-        //  <ul> element
-        commonLinks_ulist.push(subject_listitem);
-        // If the subject is the current page
-    } else if (subject == CURRENT_PAGE || CURRENT_PAGE.includes(subject)) {
-        // Append `: {subject}` to the heading
-        header_heading1.innerHTML += ": " + subject;
+////////////////////////////////////////////////////////////////////////////////
+/* ################################## ALGS ################################## */
+////////////////////////////////////////////////////////////////////////////////
 
-        header.innerHTML += p(a("#", "Back"), "back-button");
+// Collect the data into an array of <li> elements.
+let commonLinks_ulist = Array.from(
+    Object.entries(COMMON_LINKS_COLLECTION).map(([subject, links]) => {
+        // If the current page is home
+        if (
+            !CURRENT_PAGE ||
+            CURRENT_PAGE == "" ||
+            CURRENT_PAGE == "#" ||
+            CURRENT_PAGE.includes("127.0.0.1:5500") || // VSCode Live Server location
+            CURRENT_PAGE.includes("frank-hudson.github.io/common-links") // GH Pages location
+        ) {
+            // Create an <a> element that has the targeted `subject` as its content
+            // and href
+            const subject_anchor = a(SEPARATOR + subject, subject);
+            // Create a <li> that has the targeted `subject` as its id, and append
+            // the previous <a> element to it
+            const subject_listitem = li(
+                subject.toLocaleLowerCase(),
+                subject_anchor
+            );
+            // Append the previously created <li> element to the `commonLinks_ulist`
+            //  <ul> element
+            return subject_listitem;
+            // If the subject is the current page
+        } else if (subject == CURRENT_PAGE || CURRENT_PAGE.includes(subject)) {
+            // Append `: {subject}` to the heading
+            header_heading1.innerHTML += ": " + subject;
 
-        links.forEach((link) => {
-            // Create an <a> element with the current `link` as its href and
-            // content
-            const link_anchor = a(link, link, "_blank");
-            // Create a <li> element with the current `link` as its id and
-            // append the previous <a> element
-            const link_listitem = li(link, link_anchor);
-            // Append the previously created <li> element to the
-            // `commonLinks_ulist` <ul> element
-            commonLinks_ulist.push(link_listitem);
-        });
-    }
-});
+            header.innerHTML += p(a("./", "Back"), "back-button");
+
+            return links
+                .map((link) => {
+                    // Create an <a> element with the current `link` as its href and
+                    // content
+                    const link_anchor = a(link, link, "_blank");
+                    // Create a <li> element with the current `link` as its id and
+                    // append the previous <a> element
+                    const link_listitem = li(link, link_anchor);
+                    // Append the previously created <li> element to the
+                    // `commonLinks_ulist` <ul> element
+                    return link_listitem;
+                })
+                .join("\n");
+        }
+    })
+);
 console.info(commonLinks_ulist);
 
 // Append the `commonLinks_ulist` <ul> element to the `page` <div> element.
