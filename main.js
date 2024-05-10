@@ -65,6 +65,7 @@ console.info(CURRENT_PAGE);
 const header = document.getElementById("header");
 const header_heading1 = document.getElementById("h1-common-links");
 const page = document.getElementById("page");
+const footer = document.getElementById("footer");
 
 ////////////////////////////////////////////////////////////////////////////////
 /* ################################## ALGS ################################## */
