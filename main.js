@@ -39,13 +39,13 @@ const COMMON_LINKS_COLLECTION = {
         "https://en.wikipedia.org/wiki/Visual_Basic_(.NET)",
     ],
 };
-console.log(COMMON_LINKS_COLLECTION);
+console.info(COMMON_LINKS_COLLECTION);
 
 const SEPARATOR = "#";
-console.log(window.location.href);
+console.info(window.location.href);
 
 const CURRENT_PAGE = window.location.href.split(SEPARATOR)[1];
-console.log(CURRENT_PAGE);
+console.info(CURRENT_PAGE);
 
 function paraString(id, innerHTML) {
     return `<p id="${id}">${innerHTML}</p>`;
@@ -108,7 +108,7 @@ Object.entries(COMMON_LINKS_COLLECTION).forEach(([subject, links]) => {
         });
     }
 });
-console.log(commonLinks_ulist);
+console.info(commonLinks_ulist);
 
 // Append the `commonLinks_ulist` <ul> element to the `page` <div> element.
 page.innerHTML += ulistString("common-links", commonLinks_ulist.join("\n"));
