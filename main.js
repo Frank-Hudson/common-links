@@ -1,8 +1,39 @@
 const COMMON_LINKS_COLLECTION = {
-    "C-Sharp": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    "C Programming Language": [
+        "https://en.wikipedia.org/wiki/C_(programming_language)",
+        "https://www.w3schools.com/c",
+    ],
+    "C++ Programming Language": [
+        "https://cplusplus.com",
+        "https://en.wikipedia.org/wiki/C%2B%2B",
+        "https://www.w3schools.com/cpp",
+    ],
+    "C-Sharp Programming Language": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp",
         "https://en.wikipedia.org/wiki/C_Sharp_(programming_language)",
         "https://www.w3schools.com/cs/index.php",
+    ],
+    "Java Programming Language": [
+        "https://www.java.com",
+        "https://en.wikipedia.org/wiki/Java_(programming_language)",
+        "https://www.oracle.com/java",
+        "https://www.w3schools.com/java",
+    ],
+    "JavaScript": [
+        "https://www.javascript.com",
+        "https://en.wikipedia.org/wiki/JavaScript",
+        "https://www.w3schools.com/js",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    ],
+    "Luxon": [
+        "https://moment.github.io/luxon",
+        "https://github.com/moment/luxon",
+        "https://github.com/moment/luxon/blob/master/docs/formatting.md",
+    ],
+    "Python Programming Language": [
+        "https://www.python.org",
+        "https://en.wikipedia.org/wiki/Python_(programming_language)",
+        "https://www.w3schools.com/python",
     ],
     "Visual Basic": [
         "https://en.wikipedia.org/wiki/Visual_Basic_(.NET)",
